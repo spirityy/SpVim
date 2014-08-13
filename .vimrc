@@ -1,36 +1,8 @@
-"==============================
-" sp's mavcim config
-"=============================
 set nocompatible
 filetype off
 
-
-"BundleList
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-Bundle 'ctrlp.vim'
-Bundle 'ZenCoding.vim'
-Bundle 'matchit.zip'
-"Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'EasyMotion'
-"Bundle 'UltiSnips'
-Bundle 'Shougo/neocomplcache.vim'
-"Bundle 'scrooloose/syntastic'
-"Bundle 'teramako/jscomplete-vim'
-"Bundle 'myhere/vim-nodejs-complete'
-Bundle 'The-NERD-tree'
-Bundle "skammer/vim-css-color"
-Bundle 'majutsushi/tagbar'
-Bundle 'Tabular'
-
 "编码
 set fileencodings=utf-8
-set fileformat=unix
 set encoding=utf-8
 
 "美化
@@ -39,8 +11,8 @@ if has("gui_running")
     set transparency=20      " 透明背景
     set guifont=Monaco:h12   " 设置默认字体为monaco
     set showtabline=2        " 开启自带的tab栏
-    set columns=200          " 设置宽
-    set lines=50             " 设置长
+    set columns=300          " 设置宽
+    set lines=80             " 设置长
 endif
 
 colo vividchalk
@@ -54,7 +26,6 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 
- 
 let g:solarized_termtrans  = 1
 let g:solarized_termcolors = 256
 let g:solarized_contrast   = "high"
@@ -67,18 +38,13 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+"dir
+set autochdir
 set scrolloff=3
 set fenc=utf-8
 set autoindent
-set hidden
-set encoding=utf-8
-
-"set laststatus=2
 set number                                    "显示行号
-"set undofile                                  "无限undo
-"set nowrap                                    "禁止自动换行
-"autocmd! bufwritepost _vimrc source %         "自动载入配置文件不需要重启
+set hidden
 
 "相对行号 要想相对行号起作用要放在显示行号后面
 set relativenumber
@@ -87,15 +53,11 @@ set wrap
 
 set ignorecase "设置大小写敏感和聪明感知(小写全搜，大写完全匹配)
 set smartcase
-"set gdefault
 set incsearch
 set showmatch
 set hlsearch
 
 set numberwidth=4          "行号栏的宽度
-"set columns=135           "初始窗口的宽度
-"set lines=50              "初始窗口的高度
-"winpos 620 45             "初始窗口的位置
 
 set whichwrap=b,s,<,>,[,]  "让退格，空格，上下箭头遇到行首行尾时自动移到下一行（包括insert模式）
 
@@ -146,7 +108,30 @@ nmap <leader>q :execute "cd" expand("%:h")<CR>
 "搜索替换
 nmap <leader>s :,s///c
 
+"BundleList
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+Bundle 'ctrlp.vim'
+Bundle 'mattn/emmet-vim'
+Bundle 'matchit.zip'
+"Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'EasyMotion'
+"Bundle 'UltiSnips'
+Bundle "othree/html5.vim"
+Bundle 'Shougo/neocomplcache.vim'
+"Bundle 'scrooloose/syntastic'
+"Bundle 'teramako/jscomplete-vim'
+Bundle 'myhere/vim-nodejs-complete'
+Bundle 'The-NERD-tree'
+Bundle "skammer/vim-css-color"
+Bundle 'majutsushi/tagbar'
+Bundle 'Tabular'
+Bundle 'trailing-whitespace'
 
 "nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup=1
@@ -172,32 +157,19 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 "Shougo/neocomplcache.vim
 let g:neocomplcache_enable_at_startup = 1
 
-
-" jscomplete
-"let g:jscomplete_use = ['moz', 'es6th']
-
-" vim-nodejs-complete
-"let g:nodejs_complete_config = {
-"\  'js_compl_fn': 'jscomplete#CompleteJS',
-"\  'max_node_compl_len': 15
-"\}
-
-
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css,scss,less setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType hjs,html,markdown,phtml setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" Syntastic
-"let g:syntastic_python_checker = 'flake8'
-"let g:syntastic_python_checker_args = '--ignore="E401,E501"'
-"let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-"let g:syntastic_javascript_checker = ['jshint']
-"let g:syntastic_auto_loc_list=0
+" support amibroker language
+au BufRead,BufNewFile *.afl     set filetype=amibroker
+au BufRead,BufNewFile *.hjs     set filetype=html
+au BufRead,BufNewFile *.coffee     set filetype=javascript
 
-"css color 
+"css color
 let g:cssColorVimDoNotMessMyUpdatetime = 1
 
 "tagbar
